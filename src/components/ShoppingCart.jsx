@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 
-const intialCart = [];
+const initialCart = [];
 
 function cartReducer(state, action) {
   switch (action.type) {
@@ -8,6 +8,11 @@ function cartReducer(state, action) {
       return [...state, { ...action.payload, quantity: 1 }];
     case "REMOVE_ITEM":
       return state.filter((item) => item.id !== action.payload.id);
+
+    /*Removes the item that matches the id passed in payload.
+      If payload is { id: 5 }, the reducer returns a new array without that item.
+      */
+
     case "CLEAR_CART":
       return [];
 
@@ -17,14 +22,16 @@ function cartReducer(state, action) {
 }
 
 const ShoppingCart = () => {
-  const [cart, dispatch] = useReducer(cartReducer, intialCart);
+  const [cart, dispatch] = useReducer(cartReducer, initialCart);
 
   const handleAdd = (item) => {
     dispatch({ type: "ADD_ITEM", payload: item });
   };
+
   const handleRemove = (item) => {
     dispatch({ type: "REMOVE_ITEM", payload: item });
   };
+
   const handleClearCart = () => {
     dispatch({ type: "CLEAR_CART" });
   };
@@ -51,7 +58,7 @@ const ShoppingCart = () => {
       </ul>
 
       <h3>Total : ${TotalPrice}</h3>
-
+      <br />
       <button
         onClick={() =>
           handleAdd({ id: Date.now(), name: "New Item", price: 10 })
@@ -73,7 +80,7 @@ export default ShoppingCart;
 
 • useReducer is used when you want to manage more complex state logic compared to useState.
 
----------------------------------------------------
+--------------------------------------------
 
 
 useReducer Hook
@@ -92,8 +99,7 @@ When the app loads, the cart has no items.
 
 
 
-
-------------------------------------------------------
+--------------------------------------------
 
 What is a reducer?
 It’s a function that takes:
@@ -105,7 +111,7 @@ It’s a function that takes:
 • and returns a new updated state
 
 
------------------------------------------------------
+--------------------------------------------
 
 
 1. You copy the current state using the spread operator (...state)
@@ -119,14 +125,27 @@ You add a new item at the end with:
 
 
 2. You remove the item whose id matches the one sent in action.payload.
-
 • It filters out that item and returns the rest.
-
-
 
 3. Simply resets the cart to an empty array.
 
+*/
+
+/*
+
+• state: the current cart (array of items)
+• action: an object with two properties:
+      • type: tells the reducer what to do
+      • payload: extra data needed to perform that action
 
 
+...state: copies all existing items
+...action.payload: spreads item properties like id, name, price
+quantity: 1: adds quantity to the new item
+
+
+Removes the item that matches the id passed in payload.
+
+If payload is { id: 5 }, the reducer returns a new array without that item.
 
 */

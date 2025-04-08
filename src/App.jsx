@@ -1,22 +1,25 @@
 import { useState } from "react";
+import React from 'react';
 import "./App.css";
 import { useEffect } from "react";
 // import HookExample from "./components/HookExample";
 import Timer from "./components/Timer";
-import UseLayout from "./components/useLayout";
-import UseRef from "./components/UseRef";
-import UseRefVsUseState from "./components/UseRefVsUseState";
-import PropDrill from "./components/PropDrill";
+// import UseLayout from "./components/useLayout";
+// import UseRef from "./components/UseRef";
+// import UseRefVsUseState from "./components/UseRefVsUseState";
+// import PropDrill from "./components/PropDrill";
 import ThemeSwitcher from "./components/ThemeSwitcher";
-import UseReducer from "./components/UseReducer";
+// import UseReducer from "./components/UseReducer";
 import ShoppingCart from "./components/ShoppingCart";
+import UseImperativeHandle from "./components/useImperativeHandle";
+import CheckBox from "./components/UseId";
 // import DataFetcher from "./components/DataFetcher";
 
 function App() {
   const [count, setCount] = useState(0);
   const [inputValue, setInputValue] = useState();
 
-  const [toggle, setToggle] = useState(true);
+  // const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
     console.log("re rendered");
@@ -25,11 +28,12 @@ function App() {
   }, [count])
 
   return (
-    <div>
+    <div className="container">
       <ThemeSwitcher />
       <br/>
       <div>
         <p>You clicked {count} times</p>
+        <br />
         <button onClick={() => setCount(count + 1)}>Increment</button>
       </div>
       <br />
@@ -42,12 +46,14 @@ function App() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
+      <br />
       <p>
         You typed: <strong>{inputValue}</strong>
       </p>
 
-      {toggle && <Timer />}
-      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      <br />
+      {/* {toggle && <Timer />}
+      <button onClick={() => setToggle(!toggle)}>Toggle</button> */}
 
 
       {/* <DataFetcher/> */}
@@ -65,6 +71,12 @@ function App() {
       {/* <UseReducer/> */}
       
       <ShoppingCart/>
+      <br /><br />
+      
+      <UseImperativeHandle/>
+      <br /><br />
+      <CheckBox/>
+      <CheckBox/>
     </div>
   )
 }

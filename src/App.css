@@ -32,4 +32,12 @@ button:hover{
   opacity: 0.8;
 }
 
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  text-align: center;
+  flex-direction: column; /* Optional: aligns children vertically */
+}
