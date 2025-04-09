@@ -15,13 +15,13 @@ const UseRefVsUseState = () => {
 
   return (
     <div>
-      <h2>useRef Vs useState</h2>
+      <h2>useRef Vs useState</h2><br />
 
       <div>
         <h3>useState:</h3>
         <p>State Count: {count}</p>
         <button onClick={incrementState}>Increment State</button>
-      </div>
+      </div><br />
 
       <div>
         <h3>useRef:</h3>
