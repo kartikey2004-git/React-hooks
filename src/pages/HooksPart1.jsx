@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ThemeSwitcher from "../components/ThemeSwitcher";
-import DataFetcher from "../components/DataFetcher";
-import UseLayout from "../components/useLayout";
-import UseRef from "../components/UseRef";
-import UseRefVsUseState from "../components/UseRefVsUseState";
 import PropDrill from "../components/PropDrill";
-import UseReducer from "../components/UseReducer";
-import ShoppingCart from "../components/ShoppingCart";
-import UseImperativeHandle from "../components/useImperativeHandle";
-import CheckBox from "../components/UseId";
 import Timer from "../components/Timer";
 
 const HooksPart1 = () => {
   const [count, setCount] = useState(0);
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   const [toggle, setToggle] = useState(true);
 
   useEffect(() => {
@@ -47,7 +39,8 @@ const HooksPart1 = () => {
       <br />
       <br />
       {toggle && <Timer />}
-      <button onClick={() => setToggle(!toggle)}>Toggle</button><br />
+      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      <br />
       <PropDrill state={inputValue} />
     </div>
   );
