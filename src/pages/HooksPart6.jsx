@@ -1,9 +1,11 @@
 import React from 'react'
+import Login from '../components/Login'
 import UseActionState from '../components/UseActionState'
 
 const HooksPart6 = () => {
   return (
-    <div>
+    <div className='flex gap-6'>
+      <Login/>
       <UseActionState/>
     </div>
   )

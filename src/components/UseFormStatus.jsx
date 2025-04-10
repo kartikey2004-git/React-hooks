@@ -1,8 +1,9 @@
 import React, { useActionState } from "react";
 import { loginUser } from "../api/user";
+import SubmitBtn from "./CustomBtn";
 
-const UseActionState = () => {
-  const [user, submitAction, isPending] = useActionState(login, {
+const UseFormStatus = () => {
+  const [user, submitAction] = useActionState(login, {
     data: null,
     error: null
   })
@@ -54,7 +55,7 @@ const UseActionState = () => {
           />
         </div>
 
-        <button
+        {/* <button
           type="submit"
           disabled={isPending}
           className={`w-full py-2 px-4 font-semibold rounded-lg shadow-md text-white transition duration-300 ${
@@ -64,7 +65,9 @@ const UseActionState = () => {
           }`}
         >
           {isPending ? "Logging in..." : "Login"}
-        </button>
+        </button> */}
+
+        <SubmitBtn/>
 
         {user?.data && (
           <p className="text-green-600 text-center">Logged in: {user.data.email}</p>
@@ -75,4 +78,12 @@ const UseActionState = () => {
   );
 };
 
-export default UseActionState;
+export default UseFormStatus;
+
+
+// we can't see loading indicator , because we don't pass disabled={isPending} prop to button
+
+
+// so how do we add this inside the component without even passing through prop , that is where useFormStatus comes in 
+
+

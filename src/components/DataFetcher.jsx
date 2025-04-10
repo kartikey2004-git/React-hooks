@@ -12,11 +12,11 @@ const DataFetcher = () => {
   return (
     <div className="max-w-3xl mx-auto p-6">
     <h1 className="text-3xl font-bold mb-6 text-center">Posts</h1>
-    <ul className="space-y-4">
+    <ul className="space-y-4 list-disc">
       {data.map((post) => (
         <li
           key={post.id}
-          className="p-4 bg-white rounded-2xl shadow hover:shadow-lg transition-all border border-gray-200"
+          className="p-4  bg-white rounded-2xl shadow hover:shadow-lg transition-all border border-gray-200"
         >
           <h2 className="text-xl font-semibold text-gray-800">{post.title}</h2>
         </li>

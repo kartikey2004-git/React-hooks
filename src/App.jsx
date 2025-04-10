@@ -8,6 +8,9 @@ import HooksPart3 from "./pages/HooksPart3";
 import HooksPart4 from "./pages/HooksPart4";
 import HooksPart5 from "./pages/HooksPart5";
 import HooksPart6 from "./pages/HooksPart6";
+import HooksPart7 from "./pages/HooksPart7";
+import HooksPart8 from "./pages/HooksPart8";
+import HooksPart9 from "./pages/HooksPart9";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +39,18 @@ const router = createBrowserRouter([
       {
         path: "/part6",
         element: <HooksPart6 />,
+      },
+      {
+        path: "/part7",
+        element: <HooksPart7 />,
+      },
+      {
+        path: "/part8",
+        element: <HooksPart8 />,
+      },
+      {
+        path: "/part9",
+        element: <HooksPart9 />,
       },
     ],
   },

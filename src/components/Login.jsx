@@ -1,34 +1,38 @@
-import React, { useActionState } from "react";
+import React, { useState } from "react";
 import { loginUser } from "../api/user";
 
-const UseActionState = () => {
-  const [user, submitAction, isPending] = useActionState(login, {
-    data: null,
-    error: null
-  })
+const Login = () => {
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(false);
 
-   async function login(prevState , formData){
-    const username = formData.get("username");
-    const password = formData.get("password");
+  const handleSubmit = async (formData) => {
+    
+
+    setIsPending(true);
+    setUser(null); // Reset user to null before new login
+    setError(null);
+
+    const username = formData.get("username")
+    const password = formData.get("password")
 
     try {
       const response = await loginUser(username, password);
-      console.log(response.data);
-
-      return {data: response.data , error: null}
-      
+      setUser(response.data);
     } catch (error) {
-      return {...prevState , error : error.error}
+      setError(error.error || "Login failed");
+    } finally {
+      setIsPending(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form
-        action={submitAction}
+        action={handleSubmit}
         className="p-8 rounded-2xl shadow-md w-full max-w-sm space-y-6"
       >
-        <h2 className="text-2xl font-bold text-center text-gray-800">UseActionState Login</h2>
+        <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
 
         <div>
           <label className="block text-sm font-medium text-gray-600">
@@ -66,13 +70,17 @@ const UseActionState = () => {
           {isPending ? "Logging in..." : "Login"}
         </button>
 
-        {user?.data && (
-          <p className="text-green-600 text-center">Logged in: {user.data.email}</p>
+        {user && (
+          <p className="text-green-600 text-center">Logged in: {user.email}</p>
         )}
-        {user?.error && <p className="text-red-600 text-center">{user.error}</p>}
+        {error && <p className="text-red-600 text-center">{error}</p>}
       </form>
     </div>
   );
 };
 
-export default UseActionState;
+export default Login;
+
+// form action in react , formData is used , when in action handleSubmit , it would take event and it will create new formata
+
+// form action in react , formData is used , when in action handleSubmit , it would take event and it will create new formData
